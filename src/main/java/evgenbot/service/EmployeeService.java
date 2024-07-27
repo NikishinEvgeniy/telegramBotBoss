@@ -5,7 +5,7 @@ import evgenbot.entity.Employee;
 
 import java.util.List;
 
-public interface BotService {
+public interface EmployeeService {
     List<Employee> getEmployees();
     void deleteEmployee(int id);
 }

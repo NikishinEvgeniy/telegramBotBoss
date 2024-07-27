@@ -1,9 +1,10 @@
 package evgenbot.constant;
 
 public enum MessagesForUser {
+    ID_ERROR("\n Ошибка, введите корректный ID \n"),
     START("\n Привет, рад видеть тебя, Начальник! \n"),
     UPDATE(""),
-    DELETE(""),
+    DELETE("\n Введите ID сотрудника \n"),
     ADD(""),
     SHOW(""),
     HELP("\n Доступные комманды:\n" +

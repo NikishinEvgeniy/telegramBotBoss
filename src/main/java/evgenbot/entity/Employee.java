@@ -1,4 +1,4 @@
-package evgenbot.entity.dao;
+package evgenbot.entity;
 
 import jakarta.persistence.*;
 
@@ -68,10 +68,10 @@ public class Employee {
 
     @Override
     public String toString() {
-        return " Работник [" + id + "]"+
-                "\n Name = " + name +
-                "\n Surname = " + surname +
-                "\n Salary = " + salary +
-                "\n Department = " + department;
+        return "Работник [" + id + "]"+
+                "\nName = " + name +
+                "\nSurname = " + surname +
+                "\nSalary = " + salary +
+                "\nDepartment = " + department;
     }
 }
