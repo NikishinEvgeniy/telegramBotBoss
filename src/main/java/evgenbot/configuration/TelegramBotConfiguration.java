@@ -15,7 +15,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 @PropertySource("myApplication.properties")
 public class TelegramBotConfiguration {
     @Bean("bossBot")
-    public BossBot bossBotBean(
+    public BossBot bossBot(
             @Value("${bossBot.token}") String botToken,
             @Value("${bossBot.name}") String botName){
         return new BossBot(new DefaultBotOptions(),botToken, botName);

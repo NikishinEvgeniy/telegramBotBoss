@@ -30,7 +30,7 @@ public class HibernateConfiguration {
     private String showSql;
 
     @Bean("dataSource")
-    public DataSource dataSourceBean(){
+    public DataSource dataSource(){
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass(driver);
@@ -44,9 +44,9 @@ public class HibernateConfiguration {
     }
 
     @Bean("sessionFactory")
-    public LocalSessionFactoryBean sessionFactoryBean(){
+    public LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
-        localSessionFactoryBean.setDataSource(dataSourceBean());
+        localSessionFactoryBean.setDataSource(dataSource());
         localSessionFactoryBean.setPackagesToScan("evgenbot.entity");
         return localSessionFactoryBean;
     }
@@ -54,7 +54,7 @@ public class HibernateConfiguration {
     @Bean("transactionManager")
     public HibernateTransactionManager transactionManagerBean(){
         HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
-        hibernateTransactionManager.setSessionFactory(sessionFactoryBean().getObject());
+        hibernateTransactionManager.setSessionFactory(sessionFactory().getObject());
         return hibernateTransactionManager;
     }
 }
