@@ -110,14 +110,13 @@ public class BotServiceImpl implements BotService{
                 }
                 break;
             case BotState.ASK_SURNAME:
+                employeeService.setEmployeeSurname(client.getEmployee().getId(),update.getMessage().getText());
                 switch (client.getEmployee().getStatus()){
                     case EmployeeStatus.ADD:
-                        employeeService.setEmployeeSurname(client.getEmployee().getId(),update.getMessage().getText());
                         clientService.setClientStatus(client.getId(), BotState.ASK_DEPARTMENT);
                         message = MessagesForUser.ASK_DEPARTMENT.getDescription();
                         break;
                     case EmployeeStatus.UPDATE:
-                        employeeService.setEmployeeSurname(client.getEmployee().getId(),update.getMessage().getText());
                         employeeService.setEmployeeState(client.getEmployee().getId(), EmployeeStatus.OK);
                         clientService.setClientStatus(client.getId(), BotState.EMPTY);
                         clientService.setEmployeeId(client.getId(),null);
@@ -126,15 +125,13 @@ public class BotServiceImpl implements BotService{
                 }
                 break;
             case BotState.ASK_NAME:
+                employeeService.setEmployeeName(client.getEmployee().getId(),update.getMessage().getText());
                 switch (client.getEmployee().getStatus()){
                     case EmployeeStatus.ADD:
-                        employeeService.setEmployeeName(client.getEmployee().getId(),update.getMessage().getText());
                         clientService.setClientStatus(client.getId(), BotState.ASK_SURNAME);
                         message = MessagesForUser.ASK_SURNAME.getDescription();
                         break;
                     case EmployeeStatus.UPDATE:
-                        String name =  update.getMessage().getText();
-                        employeeService.setEmployeeName(client.getEmployee().getId(),name);
                         clientService.setClientStatus(client.getId(), BotState.EMPTY);
                         message = MessagesForUser.SUCCESS.getDescription() + MessagesForUser.HELP.getDescription();
                         employeeService.setEmployeeState(client.getEmployee().getId(), EmployeeStatus.OK);
@@ -143,16 +140,13 @@ public class BotServiceImpl implements BotService{
                 }
                 break;
             case BotState.ASK_DEPARTMENT:
+                employeeService.setEmployeeDepartment(client.getEmployee().getId(),update.getMessage().getText());
                 switch (client.getEmployee().getStatus()){
                     case EmployeeStatus.ADD:
-                        String addDepartment =  update.getMessage().getText();
-                        employeeService.setEmployeeDepartment(client.getEmployee().getId(),addDepartment);
                         clientService.setClientStatus(client.getId(), BotState.ASK_SALARY);
                         message = MessagesForUser.ASK_SALARY.getDescription();
                         break;
                     case EmployeeStatus.UPDATE:
-                        String department =  update.getMessage().getText();
-                        employeeService.setEmployeeDepartment(client.getEmployee().getId(),department);
                         clientService.setClientStatus(client.getId(), BotState.EMPTY);
                         message = MessagesForUser.SUCCESS.getDescription() + MessagesForUser.HELP.getDescription();
                         employeeService.setEmployeeState(client.getEmployee().getId(), EmployeeStatus.OK);
