@@ -15,7 +15,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     @Transactional
-    public Client getClient(long id) {
+    public Client getClient(Long id) {
         return clientDao.getClient(id);
     }
 
@@ -27,7 +27,13 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     @Transactional
-    public void setClientStatus(long id,String state) {
+    public void setClientStatus(Long id,String state) {
         clientDao.setClientStatus(id,state);
+    }
+
+    @Override
+    @Transactional
+    public void setEmployeeId(Long clientId ,Integer employeeId) {
+        clientDao.setEmployeeId(clientId,employeeId);
     }
 }

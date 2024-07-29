@@ -34,16 +34,19 @@ public class BossBot extends TelegramLongPollingBot {
 
     public void sendTheMessage(SendMessage message){
         try {
-            execute(message);
+            if(message != null) execute(message);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
     }
     public SendMessage generateMessage(Update update, String message){
-        SendMessage sm =
-                SendMessage.builder()
-                        .chatId(update.getMessage().getChatId())
-                        .text(message).build();
+        SendMessage sm = null;
+        if(message != null){
+            sm =
+                    SendMessage.builder()
+                            .chatId(update.getMessage().getChatId())
+                            .text(message).build();
+        }
         return sm;
     }
 }

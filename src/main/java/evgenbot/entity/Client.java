@@ -1,9 +1,6 @@
 package evgenbot.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "client")
@@ -17,6 +14,18 @@ public class Client {
     private long id;
     @Column(name = "state")
     private String state;
+
+    @OneToOne()
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
 
     public Client(String name, String surname, long id, String state) {
         this.name = name;

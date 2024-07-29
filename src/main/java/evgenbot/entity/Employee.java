@@ -17,13 +17,29 @@ public class Employee {
     private double salary;
     @Column(name = "department")
     private String department;
+    @Column(name = "status")
+    private String status;
     public Employee(){}
 
-    public Employee(String name, String surname, double salary, String department) {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Employee(String name,String status) {
+        this.name = name;
+        this.status = status;
+    }
+
+    public Employee(String name, String surname, double salary, String department, String status) {
         this.name = name;
         this.surname = surname;
         this.salary = salary;
         this.department = department;
+        this.status = status;
     }
 
     public int getId() {

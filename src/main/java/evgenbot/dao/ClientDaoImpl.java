@@ -2,21 +2,18 @@ package evgenbot.dao;
 
 
 import evgenbot.entity.Client;
+import evgenbot.entity.Employee;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
 public class ClientDaoImpl implements ClientDao {
     @Autowired
     private SessionFactory factory;
 
-    @Override
-    public List<Client> getClients() {
-        return factory.getCurrentSession().createQuery("from Client", Client.class).getResultList();
-    }
+
 
     @Override
     public Client getClient(long id) {
@@ -31,5 +28,13 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public void setClientStatus(long id, String state) {
         getClient(id).setState(state);
+    }
+
+    @Override
+    public void setEmployeeId(long clientId, Integer employeeId) {
+        Employee employee = null;
+        if(employeeId != null) employee = factory.getCurrentSession().get(Employee.class,employeeId);
+        Client client = getClient(clientId);
+        client.setEmployee(employee);
     }
 }
